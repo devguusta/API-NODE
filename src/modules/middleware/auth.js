@@ -1,5 +1,6 @@
 const jwt = require('jsonwebtoken');
-const config = proccess.env;
+require("dotenv").config();
+const config = process.env;
 const User = require('../../../models');
 const jwtMiddleware = (socket, next) => {
     const { token, user_id } = socket.handshake.query;
@@ -37,4 +38,4 @@ const jwtMiddleware = (socket, next) => {
     return next();
   };
   
-  module.exports = { verifyToken, jwtMiddleware, loginMiddleware };
+  module.exports = { verifyToken, jwtMiddleware,  };

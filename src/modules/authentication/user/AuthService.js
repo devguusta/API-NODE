@@ -24,8 +24,8 @@ module.exports = {
             const token = getToken(user.id, user.email);
     
             user.dataValues.token = token;
-            console.log(user);
-            var userEntity = new UserEntity(user.firstName, user.lastName,user.email, user.token);
+            console.log(user.token);
+            var userEntity = new UserEntity(user.firstName, user.lastName,user.email, token);
             res.status(201).json({ status: 201, userEntity });
             
         } catch (error) {
