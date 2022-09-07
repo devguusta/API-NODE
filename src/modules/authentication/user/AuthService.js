@@ -24,7 +24,9 @@ module.exports = {
             const token = getToken(user.id, user.email);
     
             user.dataValues.token = token;
-            res.status(201).json({ status: 201, user });
+            console.log(user);
+            var userEntity = new UserEntity(user.firstName, user.lastName,user.email, user.token);
+            res.status(201).json({ status: 201, userEntity });
             
         } catch (error) {
             console.log(error);
@@ -36,4 +38,13 @@ function getToken(user_id, email) {
     return jwt.sign({ user_id, email }, process.env.TOKEN_KEY, {
       expiresIn: ONE_DAY * 30,
     });
+  }
+
+  class UserEntity{
+    constructor(firstName, lastName, email,token){
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this.token = token;
+    }
   }
